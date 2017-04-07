@@ -1,0 +1,30 @@
+{
+  "name": "slack-archiver",
+  "version": "1.0.0",
+  "description": "Archive Slack channel activity to Google Drive",
+  "main": "WebConfig.js",
+  "scripts": {
+    "test": "test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ghunteranderson/Slack-Archiver.git"
+  },
+  "keywords": [
+    "GoogleApps",
+    "Script",
+    "Slack",
+    "Archive",
+    "Logger"
+  ],
+  "dependencies": {
+    "jsdoc": "3.4.3",
+    "js-beautify": "1.6.12"
+  },
+  "author": "G. Hunter Anderson",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/ghunteranderson/Slack-Archiver/issues"
+  },
+  "homepage": "https://github.com/ghunteranderson/Slack-Archiver#readme"
+}
