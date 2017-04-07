@@ -21,6 +21,9 @@
     "jsdoc": "3.4.3",
     "js-beautify": "1.6.12"
   },
+  "scripts": {
+    "jsdoc": "./node_modules/.bin/jsdoc ./scripts/"
+  },
   "author": "G. Hunter Anderson",
   "license": "GPL-3.0",
   "bugs": {
