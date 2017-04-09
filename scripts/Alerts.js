@@ -3,7 +3,7 @@
  * standup for the current day. This function is disabled on weekends. Running
  * it will have no effect. Standup alert is posted back to Slack using the
  * 'standup_postback_url' property as a post-back destination.
-*/
+ */
 function sendStandupAlerts() {
   // Do not run on weekends
   if (badTime()) {
@@ -48,7 +48,7 @@ function sendStandupAlerts() {
 
 /**
  * Search for a list of all users who last active date is not the current day.
-*/
+ */
 function findInactiveUsers() {
   users = User.getUsers();
   inactive_users = [];
@@ -62,7 +62,7 @@ function findInactiveUsers() {
 /**
  * Returns true if it's a bad time to run the standup alert function. (ie the
  * weekend)
-*/
+ */
 function badTime() {
   // Get day of week as a number
   now = Utilities.formatDate(new Date(), "CTS", "u");

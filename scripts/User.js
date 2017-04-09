@@ -4,7 +4,7 @@
  * @constructor
  * @param {string[]} property_array - (optional) Array of properties to create the user based on.
  * @todo The property array solves the problem but doesn't make sense from a design stand point.
-*/
+ */
 function User(property_array) {
   this.user_id = undefined;
   this.full_name = undefined;
@@ -75,7 +75,7 @@ function User(property_array) {
 
   /**
    * @returns {boolean} True if the user has posted a standup today.
-  */
+   */
   this.activeToday = function() {
     return this.active_date == Utilities.formatDate(new Date(), "CST", "yyyy-MM-dd");
   }
@@ -86,18 +86,18 @@ function User(property_array) {
 /**
  * The maxium users that can be loaded from the datasource
  * @static
-*/
+ */
 User.MAX_USERS = 50;
 /**
  * The number of attributes a user has. This is used when reading from the
  * spreadsheet
  * @static
-*/
+ */
 User.NUMBER_OF_ATTRIBUTES = 4
 /**
  * Cache to hold users
  * @static
-*/
+ */
 User.cache = undefined;
 
 
@@ -106,7 +106,7 @@ User.cache = undefined;
  * fresh read
  * @static
  * @returns {User[]} An array of users pulled from the spreasheet
-*/
+ */
 User.loadUsers = function() {
   container = []
   var sheet = SpreadsheetApp.getActive().getSheetByName("users");
@@ -128,7 +128,7 @@ User.loadUsers = function() {
  * be loaded.
  * @static
  * @returns {User[]} An array of users pulled from the spreasheet
-*/
+ */
 User.getUsers = function() {
   if (User.cache == undefined)
     User.loadUsers();
@@ -139,7 +139,7 @@ User.getUsers = function() {
  * Searches the cache for a user with the given Id.
  * @returns {User} Query result. Undefined if id is not foud
  * @static
-*/
+ */
 User.findById = function(id) {
   if (User.cache == undefined)
     User.loadUsers();

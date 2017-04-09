@@ -79,7 +79,7 @@ function getOrCreateFolder(parent, name) {
  * @param {Folder} parent - Parent folder they will be moved from. Note that files can have multiple parents
  * @param {Folder} destination - New location of files (new parent)
  * @param {File[]} files - Array of files to transfer
-*/
+ */
 function transferFiles(parent, destination, files) {
   for (var i = 0; i < files.length; i++) {
     destination.addFile(files[i]);
