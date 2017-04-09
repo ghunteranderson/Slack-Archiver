@@ -1,6 +1,10 @@
 /**
- * User class that holds user information and provides an interface to the datasource
- */
+ * User class that holds user information and provides an interface to the
+ * datasource
+ * @constructor
+ * @param {string[]} property_array - (optional) Array of properties to create the user based on.
+ * @todo The property array solves the problem but doesn't make sense from a design stand point.
+*/
 function User(property_array) {
   this.user_id = undefined;
   this.full_name = undefined;
@@ -18,6 +22,7 @@ function User(property_array) {
   }
   /**
    * Save this user back to a given spreadsheet
+   * @todo Remove the spreadsheet parameter
    */
   this.save = function(spreadsheet) {
     // Locate the sheet
@@ -45,7 +50,8 @@ function User(property_array) {
   }
 
   /**
-   * Test equality (of keys)
+   * Test equality based on the user_id
+   * @param {User} user - the User we are comparing to.
    */
   this.equals = function(user) {
     return user instanceof User && user.user_id == this.user_id;
@@ -59,13 +65,17 @@ function User(property_array) {
   }
 
   /**
-   * Updates the active date timestamp
+   * Updates the active date timestamp. Changes are immediately saved back to
+   * the spreadsheet
    */
   this.markActive = function() {
     this.active_date = Utilities.formatDate(new Date(), "CST", "yyyy-MM-dd");
     this.save();
   }
 
+  /**
+   * @returns {boolean} True if the user has posted a standup today.
+  */
   this.activeToday = function() {
     return this.active_date == Utilities.formatDate(new Date(), "CST", "yyyy-MM-dd");
   }
@@ -73,16 +83,30 @@ function User(property_array) {
 }
 
 
-/* The maxium users that can be loaded from the datasource */
+/**
+ * The maxium users that can be loaded from the datasource
+ * @static
+*/
 User.MAX_USERS = 50;
+/**
+ * The number of attributes a user has. This is used when reading from the
+ * spreadsheet
+ * @static
+*/
 User.NUMBER_OF_ATTRIBUTES = 4
-/* cache to hold users */
+/**
+ * Cache to hold users
+ * @static
+*/
 User.cache = undefined;
 
 
-/** 
- * Loads users from datasource. The current cache is trased and replaced with a fresh read
- */
+/**
+ * Loads users from datasource. The current cache is trashed and replaced with a
+ * fresh read
+ * @static
+ * @returns {User[]} An array of users pulled from the spreasheet
+*/
 User.loadUsers = function() {
   container = []
   var sheet = SpreadsheetApp.getActive().getSheetByName("users");
@@ -100,8 +124,11 @@ User.loadUsers = function() {
 
 
 /**
- * Get a pointer to the user cache. If cache is not loaded, the data will first be loaded.
- */
+ * Get a pointer to the user cache. If cache is not loaded, the data will first
+ * be loaded.
+ * @static
+ * @returns {User[]} An array of users pulled from the spreasheet
+*/
 User.getUsers = function() {
   if (User.cache == undefined)
     User.loadUsers();
@@ -110,8 +137,9 @@ User.getUsers = function() {
 
 /**
  * Searches the cache for a user with the given Id.
- * Returns undefined if id is not foud
- */
+ * @returns {User} Query result. Undefined if id is not foud
+ * @static
+*/
 User.findById = function(id) {
   if (User.cache == undefined)
     User.loadUsers();
@@ -120,13 +148,4 @@ User.findById = function(id) {
       return User.cache[index];
   }
   return undefined;
-}
-
-
-
-
-function testDate() {
-  users = User.getUsers();
-  users[0].markActive();
-  users[0].save();
 }

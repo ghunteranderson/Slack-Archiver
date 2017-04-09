@@ -1,10 +1,15 @@
+/**
+ * Trigger function to send standup alerts to all users who have not produced a
+ * standup for the current day. This function is disabled on weekends. Running
+ * it will have no effect. Standup alert is posted back to Slack using the
+ * 'standup_postback_url' property as a post-back destination.
+*/
 function sendStandupAlerts() {
   // Do not run on weekends
   if (badTime()) {
     Logger.log("Bad time to run alerts. Probably the weekend.");
     return;
   }
-
 
   // Only run if there are late standups
   users = findInactiveUsers();
@@ -41,7 +46,9 @@ function sendStandupAlerts() {
   Logger.log(response.getContentText());
 }
 
-// Search for a list of all users who last active date is not today
+/**
+ * Search for a list of all users who last active date is not the current day.
+*/
 function findInactiveUsers() {
   users = User.getUsers();
   inactive_users = [];
@@ -52,7 +59,10 @@ function findInactiveUsers() {
   return inactive_users;
 }
 
-// Returns true if it's a bad time to run the script. (ie weekend)
+/**
+ * Returns true if it's a bad time to run the standup alert function. (ie the
+ * weekend)
+*/
 function badTime() {
   // Get day of week as a number
   now = Utilities.formatDate(new Date(), "CTS", "u");

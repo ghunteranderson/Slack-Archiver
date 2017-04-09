@@ -22,7 +22,10 @@ function archiveStandups() {
 
 
 /**
- * Get a list of files all files that have not been archived for the current month.
+ * Get a list of files all files that have not been archived for a given month.
+ * @param {Folder} parent - Folder containing all unarchived standups
+ * @param {Date} date - Date for the month of standups to pull
+ * @return {File[]} - An array of all unarchived files for the given month
  */
 function getLastMonthsStandups(parent, date) {
   var file_name_prefix = Utilities.formatDate(date, "CTS", "yyyy-MM");
@@ -40,7 +43,10 @@ function getLastMonthsStandups(parent, date) {
 
 
 /**
- * Create current archive folder. If any folder already exists, it is not recreated.
+ * Create current archive folder. If any folder already exists, it is not
+ * recreated.
+ * @param {Folder} parent - Folder containing archives
+ * @param {Date} date - Date for the month of archive folder
  */
 function createArchiveFolder(parent, date) {
   // Get strings for folder names
@@ -56,6 +62,8 @@ function createArchiveFolder(parent, date) {
 
 /**
  * Get a folder from a parent by name. If the folder is not there, create it.
+ * @param {Folder} parent - Direct parent of requested folder
+ * @param {string} name - Name of the folder requested
  */
 function getOrCreateFolder(parent, name) {
   folder_iterator = parent.getFoldersByName(name);
@@ -68,7 +76,10 @@ function getOrCreateFolder(parent, name) {
 
 /**
  * Move all files from parent to destination. Files will no loger exist in parent.
- */
+ * @param {Folder} parent - Parent folder they will be moved from. Note that files can have multiple parents
+ * @param {Folder} destination - New location of files (new parent)
+ * @param {File[]} files - Array of files to transfer
+*/
 function transferFiles(parent, destination, files) {
   for (var i = 0; i < files.length; i++) {
     destination.addFile(files[i]);
