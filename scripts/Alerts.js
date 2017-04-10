@@ -22,7 +22,10 @@ function sendStandupAlerts() {
   init_config()
 
   // Create messages
-  var message = "Stand up warning: ";
+  var message = PROPS['alert_message'] || '';
+  if(message === ''){
+    message = "Stand up warning: ";
+  }
   for (var i = 0; i < users.length; i++) {
     message += "@" + users[i].user_name;
     if (i < users.length - 1)

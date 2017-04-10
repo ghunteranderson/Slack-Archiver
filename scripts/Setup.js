@@ -30,6 +30,6 @@ initSpreadsheet.props = function(){
     props_sheet = spreadsheet.insertSheet('properties');
   }
   // WARNING! New fields must be added on the end. DO NOT remove fields
-  var fields = [['token'], ['standup_postback_url']];
+  var fields = [['token'], ['standup_postback_url'], ['alert_message']];
   props_sheet.getRange(1, 1, fields.length, 1).setValues(fields)
 }
