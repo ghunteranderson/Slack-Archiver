@@ -13,9 +13,9 @@ function initSpreadsheet(){
 
 initSpreadsheet.user = function(){
   var spreadsheet = SpreadsheetApp.getActive();
-  var user_sheet = spreadsheet.getSheetByName('user');
+  var user_sheet = spreadsheet.getSheetByName('users');
   if(!user_sheet){
-    user_sheet =  spreadsheet.insertSheet('user');
+    user_sheet =  spreadsheet.insertSheet('users');
   }
   // WARNING! New fields must be added on the end. DO NOT remove fields
   var fields = [['key', 'full_name', 'last_active_date', 'user_names']];
