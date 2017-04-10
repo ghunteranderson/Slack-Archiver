@@ -14,11 +14,11 @@ function initSpreadsheet(){
 initSpreadsheet.user = function(){
   var spreadsheet = SpreadsheetApp.getActive();
   var user_sheet = spreadsheet.getSheetByName('user');
-  if(user_sheet){
-    spreadsheet.deleteSheet(user_sheet);
+  if(!user_sheet){
+    user_sheet =  spreadsheet.insertSheet('user');
   }
+  // WARNING! New fields must be added on the end. DO NOT remove fields
   var fields = [['key', 'full_name', 'last_active_date', 'user_names']];
-  user_sheet =  spreadsheet.insertSheet('user');
   user_sheet.getRange(1, 1, 1, fields[0].length).setValues(fields)
 }
 
@@ -26,10 +26,10 @@ initSpreadsheet.user = function(){
 initSpreadsheet.props = function(){
   var spreadsheet = SpreadsheetApp.getActive();
   var props_sheet = spreadsheet.getSheetByName('properties')
-  if(props_sheet){
-    spreadsheet.deleteSheet(props_sheet);
+  if(!props_sheet){
+    props_sheet = spreadsheet.insertSheet('properties');
   }
+  // WARNING! New fields must be added on the end. DO NOT remove fields
   var fields = [['token'], ['standup_postback_url']];
-  props_sheet = spreadsheet.insertSheet('properties');
   props_sheet.getRange(1, 1, fields.length, 1).setValues(fields)
 }
