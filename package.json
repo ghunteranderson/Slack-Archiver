@@ -19,7 +19,8 @@
   ],
   "dependencies": {
     "jsdoc": "3.4.3",
-    "js-beautify": "1.6.12"
+    "js-beautify": "1.6.12",
+    "uglify-js": "2.8.22"
   },
   "scripts": {
     "jsdoc": "./node_modules/.bin/jsdoc ./scripts/"
