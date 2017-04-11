@@ -56,7 +56,7 @@ function findInactiveUsers() {
   users = User.getUsers();
   inactive_users = [];
   for (var i = 0; i < users.length; i++) {
-    if (!users[i].activeToday())
+    if (users[i].alerts_enabled && !users[i].activeToday())
       inactive_users.push(users[i]);
   }
   return inactive_users;

@@ -18,7 +18,7 @@ initSpreadsheet.user = function(){
     user_sheet =  spreadsheet.insertSheet('users');
   }
   // WARNING! New fields must be added on the end. DO NOT remove fields
-  var fields = [['key', 'full_name', 'last_active_date', 'user_names']];
+  var fields = [['key', 'full_name', 'last_active_date', 'user_name', 'alerts_enabled']];
   user_sheet.getRange(1, 1, 1, fields[0].length).setValues(fields)
 }
 
