@@ -22,7 +22,10 @@ function sendStandupAlerts() {
   init_config()
 
   // Create messages
-  var message = "Stand up warning: ";
+  var message = PROPS['alert_message'] || '';
+  if (message === '') {
+    message = "Stand up warning: ";
+  }
   for (var i = 0; i < users.length; i++) {
     message += "@" + users[i].user_name;
     if (i < users.length - 1)
@@ -53,7 +56,7 @@ function findInactiveUsers() {
   users = User.getUsers();
   inactive_users = [];
   for (var i = 0; i < users.length; i++) {
-    if (!users[i].activeToday())
+    if (users[i].alerts_enabled && !users[i].activeToday())
       inactive_users.push(users[i]);
   }
   return inactive_users;

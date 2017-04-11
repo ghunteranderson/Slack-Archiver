@@ -11,6 +11,7 @@ function User(property_array) {
   this.active_date = undefined;
   this.new_user = true;
   this.user_name = undefined;
+  this.alerts_enabled = true;
 
   // Insert properties if passed
   if (property_array != undefined) {
@@ -18,7 +19,9 @@ function User(property_array) {
     this.full_name = property_array[1];
     this.active_date = property_array[2];
     this.user_name = property_array[3];
+    this.alerts_enabled = (property_array[4] == 'TRUE');
     this.new_user = false;
+
   }
   /**
    * Save this user back to a given spreadsheet
@@ -46,6 +49,7 @@ function User(property_array) {
     sheet.getRange(row, 2).setValue(this.full_name);
     sheet.getRange(row, 3).setValue(this.active_date);
     sheet.getRange(row, 4).setValue(this.user_name);
+    sheet.getRange(row, 5).setValue(this.alerts_enabled == true ? 'TRUE' : 'FALSE');
     SpreadsheetApp.flush();
   }
 
@@ -93,7 +97,7 @@ User.MAX_USERS = 50;
  * spreadsheet
  * @static
  */
-User.NUMBER_OF_ATTRIBUTES = 4
+User.NUMBER_OF_ATTRIBUTES = 5
 /**
  * Cache to hold users
  * @static
