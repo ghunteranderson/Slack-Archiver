@@ -35,10 +35,9 @@ function doStandup(e) {
 
   // Pull out the User ID
   var user_id = e.parameters["user_id"];
-  if (user_id == 'USLACKBOT'){
+  if (user_id == 'USLACKBOT') {
     throw "WARNING: Ignoring messages from Slackbot";
-  }
-  else if (user_id == undefined)
+  } else if (user_id == undefined)
     throw "ERROR: Missing parameter user_id";
 
   // Resolve who the user is

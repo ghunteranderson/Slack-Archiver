@@ -23,7 +23,7 @@ function sendStandupAlerts() {
 
   // Create messages
   var message = PROPS['alert_message'] || '';
-  if(message === ''){
+  if (message === '') {
     message = "Stand up warning: ";
   }
   for (var i = 0; i < users.length; i++) {
